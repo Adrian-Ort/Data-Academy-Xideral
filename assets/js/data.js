@@ -43,7 +43,7 @@ const TAREAS = [
   {
     id: "01",
     titulo: "Creación y análisis de un DataFrame con Pandas",
-    descripcion: "Crear un DataFrame de productos y ventas, calcular suma total, valor máximo y filtrar ventas mayores a 120. Incluye análisis del dataset Titanic.",
+    descripcion: "Crear un DataFrame de productos y ventas, calcular suma total, valor máximo y filtrar filas con ventas mayores a 120.",
     codigo: "import pandas as pd\ndf = pd.DataFrame({'producto': [...], 'ventas': [...]})\nprint(df['ventas'].sum())",
     imagen: ""
   }
