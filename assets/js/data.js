@@ -46,5 +46,12 @@ const TAREAS = [
     descripcion: "Crear un DataFrame de productos y ventas, calcular suma total, valor máximo y filtrar filas con ventas mayores a 120.",
     codigo: "import pandas as pd\ndf = pd.DataFrame({'producto': [...], 'ventas': [...]})\nprint(df['ventas'].sum())",
     imagen: ""
+  },
+  {
+    id: "02",
+    titulo: "Análisis del dataset Titanic con Pandas",
+    descripcion: "Exploración y análisis del dataset Titanic: limpieza de datos, estadísticas descriptivas y filtrado de pasajeros por condiciones.",
+    codigo: "import pandas as pd\ndf = pd.read_csv('titanic.csv')\nprint(df.describe())",
+    imagen: ""
   }
 ];
