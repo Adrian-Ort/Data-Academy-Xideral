@@ -60,5 +60,13 @@ const TAREAS = [
     descripcion: "Exploración y análisis del dataset Titanic: limpieza de datos, estadísticas descriptivas y filtrado de pasajeros por condiciones.",
     codigo: "import pandas as pd\ndf = pd.read_csv('titanic.csv')\nprint(df.describe())",
     imagen: ""
+  },
+  {
+    id: "03",
+    titulo: "CodeCombat — Kithgard Dungeon",
+    descripcion: "Avance en CodeCombat: resolución de niveles del dungeon Kithgard programando al héroe con comandos de movimiento y combate en Python.",
+    codigo: "hero.moveRight()\nenemy = hero.findNearestEnemy()\nhero.attack(enemy)",
+    imagen: "assets/img/Tarea-codecombat.png",
+    link: ""
   }
 ];

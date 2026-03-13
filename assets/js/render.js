@@ -64,11 +64,17 @@ function renderEjercicioCard(ej, index) {
  * @param {number} index - Índice para el delay de animación
  */
 function renderTareaCard(tarea, index) {
-  const archivoUrl  = `tareas/${tarea.id}/index.html`;
+  const archivoUrl  = tarea.link !== undefined ? tarea.link : `tareas/${tarea.id}/index.html`;
   const delayClass  = `reveal-d${(index % 3) + 1}`;
 
   const imagenHtml = tarea.imagen
     ? `<img src="${tarea.imagen}" alt="${tarea.titulo}" class="card-preview-img">`
+    : "";
+
+  const accionHtml = archivoUrl
+    ? `<a href="${archivoUrl}" target="_blank" class="card-action link-magenta">
+          Abrir tarea <i class="bi bi-box-arrow-up-right"></i>
+        </a>`
     : "";
 
   return `
@@ -80,9 +86,7 @@ function renderTareaCard(tarea, index) {
         <p>${tarea.descripcion}</p>
         <pre class="card-code"><code>${escapeHtml(tarea.codigo)}</code></pre>
         <div class="card-spacer"></div>
-        <a href="${archivoUrl}" target="_blank" class="card-action link-magenta">
-          Abrir tarea <i class="bi bi-box-arrow-up-right"></i>
-        </a>
+        ${accionHtml}
       </div>
     </div>`;
 }
