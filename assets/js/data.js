@@ -67,6 +67,6 @@ const TAREAS = [
     descripcion: "Avance en CodeCombat: resolución de niveles del dungeon Kithgard programando al héroe con comandos de movimiento y combate en Python.",
     codigo: "hero.moveRight()\nenemy = hero.findNearestEnemy()\nhero.attack(enemy)",
     imagen: "assets/img/Tarea-codecombat.png",
-    link: ""
+    link: "assets/img/Tarea-codecombat.png"
   }
 ];
