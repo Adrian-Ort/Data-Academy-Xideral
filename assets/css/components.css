@@ -307,6 +307,25 @@
 }
 
 
+/* ── LIGHTBOX ────────────────────────────────── */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  z-index: 9999;
+  place-items: center;
+  cursor: pointer;
+}
+#lightbox.active { display: grid; }
+#lightbox img {
+  max-width: 90vw;
+  max-height: 88vh;
+  border-radius: 10px;
+  cursor: default;
+  box-shadow: 0 0 40px rgba(0, 245, 212, 0.15);
+}
+
 /* ── EMPTY STATE ─────────────────────────────── */
 /* Se muestra cuando no hay ejercicios o tareas aún */
 .empty-state {

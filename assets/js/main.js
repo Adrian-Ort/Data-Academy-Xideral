@@ -70,3 +70,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+/* ── Lightbox ─────────────────────────────────── */
+const lightbox    = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+document.addEventListener("click", (e) => {
+  const trigger = e.target.closest("[data-lightbox]");
+  if (trigger) {
+    lightboxImg.src = trigger.dataset.lightbox;
+    lightbox.classList.add("active");
+  }
+});
+
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox) lightbox.classList.remove("active");
+});

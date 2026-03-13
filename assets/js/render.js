@@ -71,8 +71,13 @@ function renderTareaCard(tarea, index) {
     ? `<img src="${tarea.imagen}" alt="${tarea.titulo}" class="card-preview-img">`
     : "";
 
+  const esImagen = archivoUrl && /\.(png|jpg|jpeg|gif|webp)$/i.test(archivoUrl);
   const accionHtml = archivoUrl
-    ? `<a href="${archivoUrl}" target="_blank" class="card-action link-magenta">
+    ? esImagen
+      ? `<button data-lightbox="${archivoUrl}" class="card-action link-magenta">
+          Ver imagen <i class="bi bi-image"></i>
+        </button>`
+      : `<a href="${archivoUrl}" target="_blank" class="card-action link-magenta">
           Abrir tarea <i class="bi bi-box-arrow-up-right"></i>
         </a>`
     : "";
