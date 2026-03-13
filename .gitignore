@@ -1,0 +1,36 @@
+# ─── Sistema operativo ───────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# ─── Editores ────────────────────────────────
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# ─── Variables de entorno / secretos ─────────
+.env
+.env.local
+*.local
+
+# ─── Logs ────────────────────────────────────
+*.log
+npm-debug.log*
+
+# ─── Archivos temporales ─────────────────────
+*.tmp
+*.bak
+*.swp
+*~
+
+# ─── Node (por si en algún momento se usa) ───
+node_modules/
+package-lock.json
+dist/
+build/
+
+# ─── macOS ───────────────────────────────────
+__MACOSX/

@@ -1,0 +1,46 @@
+/* ================================================
+   variables.css — Design tokens del portafolio
+   ================================================
+   Cambia los valores aquí para afectar todo el sitio.
+   Este archivo se carga primero; los demás lo usan.
+   ================================================ */
+
+:root {
+  /* ── Fondos ─────────────────────────────── */
+  --bg-deep:       #050510;
+  --bg-primary:    #0a0a1a;
+  --bg-card:       #0f0f24;
+  --bg-card-hover: #14142e;
+
+  /* ── Colores de acento ───────────────────── */
+  --cyan:     #00f5d4;
+  --magenta:  #f72585;
+  --electric: #7b2ff7;
+  --blue:     #4361ee;
+  --yellow:   #fee440;
+
+  /* ── Tipografía ─────────────────────────── */
+  --text-primary:   #f0eef6;
+  --text-secondary: #a09cb5;
+  --text-muted:     #5e5a73;
+
+  /* ── Bordes ─────────────────────────────── */
+  --border:       rgba(123, 47, 247, 0.15);
+  --border-hover: rgba(0, 245, 212, 0.3);
+
+  /* ── Glows ───────────────────────────────── */
+  --glow-cyan:     0 0 30px rgba(0, 245, 212, 0.15);
+  --glow-magenta:  0 0 30px rgba(247, 37, 133, 0.15);
+  --glow-electric: 0 0 30px rgba(123, 47, 247, 0.2);
+
+  /* ── Gradientes ─────────────────────────── */
+  --gradient-main: linear-gradient(135deg, #7b2ff7, #00f5d4);
+  --gradient-warm: linear-gradient(135deg, #f72585, #fee440);
+  --gradient-cool: linear-gradient(135deg, #4361ee, #00f5d4);
+  --gradient-fire: linear-gradient(135deg, #f72585, #7b2ff7);
+
+  /* ── Forma y movimiento ──────────────────── */
+  --radius:     20px;
+  --radius-sm:  12px;
+  --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}

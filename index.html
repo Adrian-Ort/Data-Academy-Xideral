@@ -4,872 +4,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Adrian Ortega | Backend Academy — Xideral</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
-    />
-    <style>
-      :root {
-        --bg-deep: #050510;
-        --bg-primary: #0a0a1a;
-        --bg-card: #0f0f24;
-        --bg-card-hover: #14142e;
-        --cyan: #00f5d4;
-        --magenta: #f72585;
-        --electric: #7b2ff7;
-        --blue: #4361ee;
-        --yellow: #fee440;
-        --text-primary: #f0eef6;
-        --text-secondary: #a09cb5;
-        --text-muted: #5e5a73;
-        --border: rgba(123, 47, 247, 0.15);
-        --border-hover: rgba(0, 245, 212, 0.3);
-        --glow-cyan: 0 0 30px rgba(0, 245, 212, 0.15);
-        --glow-magenta: 0 0 30px rgba(247, 37, 133, 0.15);
-        --glow-electric: 0 0 30px rgba(123, 47, 247, 0.2);
-        --gradient-main: linear-gradient(135deg, #7b2ff7, #00f5d4);
-        --gradient-warm: linear-gradient(135deg, #f72585, #fee440);
-        --gradient-cool: linear-gradient(135deg, #4361ee, #00f5d4);
-        --gradient-fire: linear-gradient(135deg, #f72585, #7b2ff7);
-        --radius: 20px;
-        --radius-sm: 12px;
-        --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 90px;
-      }
-
-      body {
-        font-family: "DM Sans", sans-serif;
-        background: var(--bg-deep);
-        color: var(--text-primary);
-        line-height: 1.7;
-        overflow-x: hidden;
-      }
-
-      ::selection {
-        background: var(--electric);
-        color: #fff;
-      }
-      ::-webkit-scrollbar {
-        width: 5px;
-      }
-      ::-webkit-scrollbar-track {
-        background: var(--bg-deep);
-      }
-      ::-webkit-scrollbar-thumb {
-        background: var(--electric);
-        border-radius: 3px;
-      }
-
-      .mesh-bg {
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        background:
-          radial-gradient(
-            ellipse 80% 60% at 10% 20%,
-            rgba(123, 47, 247, 0.08) 0%,
-            transparent 60%
-          ),
-          radial-gradient(
-            ellipse 60% 80% at 90% 80%,
-            rgba(0, 245, 212, 0.06) 0%,
-            transparent 60%
-          ),
-          radial-gradient(
-            ellipse 50% 50% at 50% 50%,
-            rgba(247, 37, 133, 0.04) 0%,
-            transparent 60%
-          );
-        animation: meshMove 30s ease-in-out infinite alternate;
-      }
-
-      @keyframes meshMove {
-        0% {
-          transform: scale(1) rotate(0deg);
-        }
-        50% {
-          transform: scale(1.05) rotate(1deg);
-        }
-        100% {
-          transform: scale(1) rotate(-1deg);
-        }
-      }
-
-      .grain {
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        opacity: 0.03;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        pointer-events: none;
-      }
-
-      nav.navbar {
-        background: rgba(5, 5, 16, 0.8);
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        border-bottom: 1px solid var(--border);
-        padding: 0.75rem 0;
-        transition: var(--transition);
-        z-index: 1000;
-      }
-
-      nav.navbar.scrolled {
-        box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
-      }
-
-      .navbar-brand {
-        font-family: "Syne", sans-serif;
-        font-weight: 800;
-        font-size: 1.4rem;
-        color: var(--text-primary) !important;
-        letter-spacing: -1px;
-      }
-
-      .navbar-brand .brand-accent {
-        background: var(--gradient-main);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .nav-link {
-        font-weight: 500;
-        font-size: 0.88rem;
-        color: var(--text-secondary) !important;
-        padding: 0.5rem 1rem !important;
-        border-radius: var(--radius-sm);
-        transition: var(--transition);
-        position: relative;
-      }
-
-      .nav-link::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 0;
-        height: 2px;
-        background: var(--gradient-main);
-        border-radius: 2px;
-        transition: var(--transition);
-        transform: translateX(-50%);
-      }
-
-      .nav-link:hover {
-        color: var(--cyan) !important;
-      }
-      .nav-link:hover::after {
-        width: 60%;
-      }
-      .navbar-toggler {
-        border: 1px solid var(--border) !important;
-        padding: 0.4rem 0.6rem;
-      }
-      .navbar-toggler-icon {
-        filter: invert(1);
-      }
-
-      .hero {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        position: relative;
-        padding: 6rem 0 4rem;
-      }
-
-      .hero-orb {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(80px);
-        opacity: 0.4;
-        animation: orbFloat 15s ease-in-out infinite alternate;
-        pointer-events: none;
-      }
-
-      .hero-orb-1 {
-        width: 400px;
-        height: 400px;
-        background: var(--electric);
-        top: 10%;
-        right: 5%;
-      }
-      .hero-orb-2 {
-        width: 300px;
-        height: 300px;
-        background: var(--cyan);
-        bottom: 10%;
-        left: -5%;
-        animation-delay: -5s;
-      }
-      .hero-orb-3 {
-        width: 200px;
-        height: 200px;
-        background: var(--magenta);
-        top: 60%;
-        right: 30%;
-        animation-delay: -10s;
-      }
-
-      @keyframes orbFloat {
-        0% {
-          transform: translate(0, 0) scale(1);
-        }
-        33% {
-          transform: translate(30px, -20px) scale(1.1);
-        }
-        66% {
-          transform: translate(-20px, 30px) scale(0.95);
-        }
-        100% {
-          transform: translate(10px, -10px) scale(1.05);
-        }
-      }
-
-      .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        padding: 0.5rem 1.2rem;
-        background: rgba(123, 47, 247, 0.12);
-        border: 1px solid rgba(123, 47, 247, 0.25);
-        border-radius: 50px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.78rem;
-        font-weight: 500;
-        color: var(--cyan);
-        margin-bottom: 2rem;
-      }
-
-      .pulse-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--cyan);
-        box-shadow: 0 0 12px var(--cyan);
-        animation: pulseDot 2s ease-in-out infinite;
-      }
-
-      @keyframes pulseDot {
-        0%,
-        100% {
-          opacity: 1;
-          box-shadow: 0 0 12px var(--cyan);
-        }
-        50% {
-          opacity: 0.4;
-          box-shadow: 0 0 4px var(--cyan);
-        }
-      }
-
-      .hero h1 {
-        font-family: "Syne", sans-serif;
-        font-size: clamp(2.8rem, 7vw, 5.5rem);
-        font-weight: 800;
-        line-height: 1.05;
-        letter-spacing: -3px;
-        margin-bottom: 1.5rem;
-      }
-
-      .hero h1 .text-gradient {
-        background: var(--gradient-main);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .hero-desc {
-        font-size: 1.15rem;
-        color: var(--text-secondary);
-        max-width: 560px;
-        margin-bottom: 2rem;
-        font-weight: 300;
-        line-height: 1.8;
-      }
-
-      .tech-pills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 2.5rem;
-      }
-
-      .pill {
-        padding: 0.35rem 0.9rem;
-        border-radius: 8px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.73rem;
-        font-weight: 500;
-        border: 1px solid var(--border);
-        color: var(--text-secondary);
-        background: rgba(15, 15, 36, 0.6);
-        transition: var(--transition);
-        cursor: default;
-      }
-
-      .pill:hover {
-        border-color: var(--cyan);
-        color: var(--cyan);
-        box-shadow: var(--glow-cyan);
-        transform: translateY(-3px);
-      }
-
-      .btn-glow {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.8rem 2rem;
-        background: var(--gradient-main);
-        color: #fff;
-        font-family: "Syne", sans-serif;
-        font-weight: 700;
-        font-size: 0.95rem;
-        border: none;
-        border-radius: var(--radius-sm);
-        text-decoration: none;
-        transition: var(--transition);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .btn-glow::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          135deg,
-          transparent 30%,
-          rgba(255, 255, 255, 0.2) 50%,
-          transparent 70%
-        );
-        transform: translateX(-100%);
-        transition: 0.7s ease;
-      }
-
-      .btn-glow:hover {
-        transform: translateY(-3px) scale(1.02);
-        box-shadow:
-          0 10px 40px rgba(123, 47, 247, 0.4),
-          0 0 20px rgba(0, 245, 212, 0.2);
-        color: #fff;
-      }
-
-      .btn-glow:hover::before {
-        transform: translateX(100%);
-      }
-
-      .btn-ghost {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.8rem 2rem;
-        background: transparent;
-        color: var(--text-primary);
-        font-family: "Syne", sans-serif;
-        font-weight: 600;
-        font-size: 0.95rem;
-        border: 1px solid var(--border);
-        border-radius: var(--radius-sm);
-        text-decoration: none;
-        transition: var(--transition);
-      }
-
-      .btn-ghost:hover {
-        border-color: var(--cyan);
-        color: var(--cyan);
-        box-shadow: var(--glow-cyan);
-        transform: translateY(-3px);
-      }
-
-      .section {
-        padding: 7rem 0;
-        position: relative;
-      }
-      .section-alt {
-        background: rgba(10, 10, 26, 0.5);
-      }
-
-      .section-label {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.78rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 0.75rem;
-        background: var(--gradient-main);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .section-title {
-        font-family: "Syne", sans-serif;
-        font-size: clamp(2rem, 4.5vw, 3.2rem);
-        font-weight: 800;
-        letter-spacing: -1.5px;
-        line-height: 1.15;
-        margin-bottom: 0.75rem;
-      }
-
-      .section-bar {
-        width: 80px;
-        height: 4px;
-        border-radius: 2px;
-        margin-top: 1rem;
-        margin-bottom: 3rem;
-      }
-
-      .bar-cyan {
-        background: var(--gradient-cool);
-      }
-      .bar-magenta {
-        background: var(--gradient-fire);
-      }
-      .bar-warm {
-        background: var(--gradient-warm);
-      }
-      .bar-main {
-        background: var(--gradient-main);
-      }
-
-      .card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 2rem;
-        transition: var(--transition);
-        height: 100%;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        border-radius: 3px 3px 0 0;
-        transform: scaleX(0);
-        transition: var(--transition);
-        transform-origin: left;
-      }
-
-      .card.accent-cyan::before {
-        background: var(--gradient-cool);
-      }
-      .card.accent-magenta::before {
-        background: var(--gradient-fire);
-      }
-
-      .card:hover {
-        background: var(--bg-card-hover);
-        border-color: var(--border-hover);
-        transform: translateY(-8px);
-      }
-
-      .card:hover::before {
-        transform: scaleX(1);
-      }
-      .card.accent-cyan:hover {
-        box-shadow: var(--glow-cyan);
-      }
-      .card.accent-magenta:hover {
-        box-shadow: var(--glow-magenta);
-      }
-
-      .card-num {
-        font-family: "Syne", sans-serif;
-        font-size: 2.5rem;
-        font-weight: 800;
-        line-height: 1;
-        margin-bottom: 1rem;
-        background: var(--gradient-main);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        opacity: 0.35;
-      }
-
-      .card h3 {
-        font-family: "Syne", sans-serif;
-        font-size: 1.15rem;
-        font-weight: 700;
-        margin-bottom: 0.75rem;
-        letter-spacing: -0.3px;
-        color: #fff;
-      }
-
-      .card p {
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-        font-weight: 300;
-        line-height: 1.6;
-      }
-
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        margin-top: 1.2rem;
-      }
-
-      .tag {
-        padding: 0.2rem 0.65rem;
-        border-radius: 6px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.68rem;
-        font-weight: 500;
-      }
-
-      .tag-cyan {
-        background: rgba(0, 245, 212, 0.1);
-        color: var(--cyan);
-      }
-      .tag-magenta {
-        background: rgba(247, 37, 133, 0.1);
-        color: var(--magenta);
-      }
-      .tag-electric {
-        background: rgba(123, 47, 247, 0.12);
-        color: #a78bfa;
-      }
-      .tag-blue {
-        background: rgba(67, 97, 238, 0.12);
-        color: var(--blue);
-      }
-      .tag-yellow {
-        background: rgba(254, 228, 64, 0.1);
-        color: var(--yellow);
-      }
-
-      .card-action {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        margin-top: 1.5rem;
-        font-weight: 600;
-        font-size: 0.85rem;
-        text-decoration: none;
-        transition: var(--transition);
-      }
-
-      .card-action.link-cyan {
-        color: var(--cyan);
-      }
-      .card-action.link-cyan:hover {
-        color: #fff;
-        gap: 0.8rem;
-      }
-      .card-action.link-magenta {
-        color: var(--magenta);
-      }
-      .card-action.link-magenta:hover {
-        color: #fff;
-        gap: 0.8rem;
-      }
-
-      .proyecto-card {
-        background: linear-gradient(
-          135deg,
-          var(--bg-card),
-          rgba(123, 47, 247, 0.06)
-        );
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 3rem;
-        position: relative;
-        overflow: hidden;
-        transition: var(--transition);
-      }
-
-      .proyecto-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: var(--gradient-main);
-      }
-
-      .proyecto-card::after {
-        content: "";
-        position: absolute;
-        bottom: -100px;
-        right: -100px;
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        background: var(--electric);
-        filter: blur(120px);
-        opacity: 0.08;
-        transition: var(--transition);
-      }
-
-      .proyecto-card:hover {
-        transform: translateY(-6px);
-        border-color: rgba(123, 47, 247, 0.3);
-        box-shadow: var(--glow-electric);
-      }
-
-      .proyecto-card:hover::after {
-        opacity: 0.15;
-      }
-
-      .status-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.35rem 1rem;
-        border-radius: 50px;
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.73rem;
-        font-weight: 500;
-        margin-bottom: 1.5rem;
-        background: rgba(0, 245, 212, 0.1);
-        border: 1px solid rgba(0, 245, 212, 0.2);
-        color: var(--cyan);
-      }
-
-      .status-badge .dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--cyan);
-        box-shadow: 0 0 8px var(--cyan);
-        animation: pulseDot 2s ease-in-out infinite;
-      }
-
-      .about-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        margin-top: 2rem;
-      }
-
-      .about-stat {
-        padding: 1.5rem;
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-sm);
-        text-align: center;
-        transition: var(--transition);
-      }
-
-      .about-stat:hover {
-        border-color: var(--border-hover);
-        transform: translateY(-4px);
-      }
-      .about-stat .stat-icon {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-        display: block;
-      }
-
-      .about-stat .stat-label {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.72rem;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      pre {
-        background: var(--bg-card) !important;
-        border: 1px solid var(--border);
-        border-radius: var(--radius-sm);
-        padding: 1.5rem;
-        overflow-x: auto;
-        margin: 1.5rem 0;
-      }
-
-      code {
-        font-family: "JetBrains Mono", monospace;
-        font-size: 0.82rem;
-      }
-
-      .detail-content h3 {
-        font-family: "Syne", sans-serif;
-        font-size: 1.15rem;
-        font-weight: 700;
-        margin: 2rem 0 0.75rem;
-        color: var(--text-primary);
-      }
-
-      .detail-content p {
-        color: var(--text-secondary);
-        font-weight: 300;
-      }
-
-      .back-link {
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 0.9rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        margin-bottom: 1.5rem;
-        transition: var(--transition);
-      }
-
-      .back-link:hover {
-        gap: 0.7rem;
-      }
-
-      footer {
-        padding: 3rem 0;
-        border-top: 1px solid var(--border);
-        text-align: center;
-        background: var(--bg-deep);
-      }
-
-      footer p {
-        color: var(--text-muted);
-        font-size: 0.85rem;
-        font-weight: 300;
-      }
-
-      .footer-brand {
-        background: var(--gradient-main);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-weight: 600;
-      }
-
-      .reveal {
-        opacity: 0;
-        transform: translateY(50px);
-        transition:
-          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-          transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .reveal-d1 {
-        transition-delay: 0.1s;
-      }
-      .reveal-d2 {
-        transition-delay: 0.2s;
-      }
-      .reveal-d3 {
-        transition-delay: 0.3s;
-      }
-
-      .hero-content > * {
-        opacity: 0;
-        transform: translateY(35px);
-        animation: fadeSlide 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      }
-
-      .hero-content > *:nth-child(1) {
-        animation-delay: 0.15s;
-      }
-      .hero-content > *:nth-child(2) {
-        animation-delay: 0.3s;
-      }
-      .hero-content > *:nth-child(3) {
-        animation-delay: 0.45s;
-      }
-      .hero-content > *:nth-child(4) {
-        animation-delay: 0.6s;
-      }
-      .hero-content > *:nth-child(5) {
-        animation-delay: 0.75s;
-      }
-
-      @keyframes fadeSlide {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @media (max-width: 768px) {
-        .section {
-          padding: 5rem 0;
-        }
-        .proyecto-card {
-          padding: 2rem;
-        }
-        .hero-orb {
-          opacity: 0.2;
-        }
-        .hero h1 {
-          letter-spacing: -1.5px;
-        }
-      }
-    </style>
+    <link rel="icon" type="image/webp" href="logo-ADev-orbe-brillante.webp" />
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <!-- Tipografías -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Estilos del portafolio — orden importante -->
+    <link rel="stylesheet" href="assets/css/variables.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
   </head>
+
   <body>
+    <!-- Fondo decorativo (fijo, detrás de todo) -->
     <div class="mesh-bg"></div>
     <div class="grain"></div>
 
+    <!-- =============================================
+         NAVEGACIÓN
+         ============================================= -->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#inicio"
-          >&lt;<span class="brand-accent">AD</span>/&gt;</a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navMenu"
-        >
+        <a class="navbar-brand" href="#inicio">&lt;<span class="brand-accent">AD</span>/&gt;</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navMenu">
           <ul class="navbar-nav gap-1">
-            <li class="nav-item">
-              <a class="nav-link" href="#inicio">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#sobre-mi">Sobre mí</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#ejercicios">Ejercicios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#tareas">Tareas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#proyecto-final">Proyecto</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="#sobre-mi">Sobre mí</a></li>
+            <li class="nav-item"><a class="nav-link" href="#ejercicios">Ejercicios</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tareas">Tareas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#proyecto-final">Proyecto</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
+    <!-- =============================================
+         HERO / INICIO
+         ============================================= -->
     <section id="inicio" class="hero">
       <div class="hero-orb hero-orb-1"></div>
       <div class="hero-orb hero-orb-2"></div>
       <div class="hero-orb hero-orb-3"></div>
+
       <div class="container">
         <div class="row">
           <div class="col-lg-9 hero-content">
@@ -877,61 +61,66 @@
               <span class="pulse-dot"></span>
               Backend Academy — Xideral
             </div>
+
             <h1>
-              Hola, soy<br /><span class="text-gradient">Adrian Ortega</span>
+              Hola, soy<br />
+              <span class="text-gradient">Adrian Ortega</span>
             </h1>
+
             <p class="hero-desc">
               Desarrollador Full Stack especializado en Backend. Actualmente
               ampliando conocimientos en arquitecturas de datos y servicios
               cloud con AWS en la academia backend de Xideral.
             </p>
+
             <div class="tech-pills">
               <span class="pill">AWS</span>
               <span class="pill">SQL</span>
               <span class="pill">S3</span>
               <span class="pill">Lambda</span>
-              
               <span class="pill">Python</span>
             </div>
+
             <div class="d-flex flex-wrap gap-3">
-              <a href="#ejercicios" class="btn-glow"
-                >Ver mi trabajo <i class="bi bi-arrow-down-short"></i
-              ></a>
-              <a
-                href="https://portafolio-adrian-dev.vercel.app"
-                target="_blank"
-                class="btn-ghost"
-                >Portafolio personal <i class="bi bi-box-arrow-up-right"></i
-              ></a>
+              <a href="#ejercicios" class="btn-glow">
+                Ver mi trabajo <i class="bi bi-arrow-down-short"></i>
+              </a>
+              <a href="https://portafolio-adrian-dev.vercel.app" target="_blank" class="btn-ghost">
+                Portafolio personal <i class="bi bi-box-arrow-up-right"></i>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- =============================================
+         SOBRE MÍ
+         ============================================= -->
     <section id="sobre-mi" class="section">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
+
             <div class="reveal">
               <p class="section-label">// sobre mí</p>
-              <h2 class="section-title">
-                Construyendo con<br />datos y la nube
-              </h2>
+              <h2 class="section-title">Construyendo con<br />datos y la nube</h2>
               <div class="section-bar bar-main"></div>
             </div>
+
             <div class="reveal reveal-d1">
-              <p class="hero-desc" style="max-width: 100%">
+              <p class="hero-desc full-width">
                 Soy un desarrollador apasionado por el backend y las
                 arquitecturas escalables. En esta etapa de la academia de
                 Xideral, estoy enfocado en el manejo de datos, diseño de bases
                 de datos y la implementación de servicios en AWS.
               </p>
-              <p style="color: var(--text-secondary); font-weight: 300">
+              <p class="text-soft">
                 Este portafolio documenta mi progreso: desde ejercicios
                 prácticos en clase hasta el proyecto final integrador.
               </p>
             </div>
+
             <div class="about-grid reveal reveal-d2">
               <div class="about-stat">
                 <span class="stat-icon">🎓</span>
@@ -950,18 +139,21 @@
                 <span class="stat-label">Backend Dev</span>
               </div>
             </div>
+
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============================================================
-         SECCIÓN: EJERCICIOS EN CLASE
-         Para agregar uno nuevo:
-           1. Copia un bloque <div class="col-md-6 col-lg-4 reveal">
-           2. Cambia card-num, h3, p, tags y href
-           3. Copia una <section id="ej-XX"> de detalle más abajo
-         ============================================================ -->
+    <!-- =============================================
+         EJERCICIOS EN CLASE
+         ─────────────────────────────────────────────
+         Para agregar un ejercicio:
+           1. Abre assets/js/data.js
+           2. Agrega un objeto al array EJERCICIOS
+           3. Coloca el HTML de Jupyter en ejercicios/{id}/index.html
+           4. Guarda — la tarjeta aparece automáticamente
+         ============================================= -->
     <section id="ejercicios" class="section section-alt">
       <div class="container">
         <div class="reveal">
@@ -969,54 +161,20 @@
           <h2 class="section-title">Ejercicios en Clase</h2>
           <div class="section-bar bar-cyan"></div>
         </div>
-        <div class="row g-4">
-          <div class="col-12 reveal reveal-d1">
-            <div
-              style="
-                text-align: center;
-                padding: 3rem 2rem;
-                color: var(--text-muted);
-              "
-            >
-              <i
-                class="bi bi-code-slash"
-                style="
-                  font-size: 2.5rem;
-                  opacity: 0.3;
-                  display: block;
-                  margin-bottom: 1rem;
-                "
-              ></i>
-              <p style="font-size: 0.95rem; font-weight: 300">
-                Próximamente se agregarán los ejercicios realizados en clase.
-              </p>
-            </div>
-          </div>
-
-          <!-- AGREGAR EJERCICIO: copia este bloque, cambia número, título, descripción, tags y href
-                <div class="col-md-6 col-lg-4 reveal">
-                    <div class="card accent-cyan">
-                        <div class="card-num">01</div>
-                        <h3>Título del ejercicio</h3>
-                        <p>Descripción breve del ejercicio.</p>
-                        <div class="tags">
-                            <span class="tag tag-cyan">Tag</span>
-                        </div>
-                        <a href="#ej-01" class="card-action link-cyan">Ver detalle <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-                -->
-        </div>
+        <!-- render.js inyecta las tarjetas aquí -->
+        <div class="row g-4" id="ejercicios-grid"></div>
       </div>
     </section>
 
-    <!-- ============================================================
-         SECCIÓN: TAREAS
-         Para agregar una nueva:
-           1. Copia un bloque <div class="col-md-6 reveal">
-           2. Cambia card-num, h3, p, tags y href
-           3. Copia una <section id="tarea-XX"> de detalle más abajo
-         ============================================================ -->
+    <!-- =============================================
+         TAREAS ENTREGABLES
+         ─────────────────────────────────────────────
+         Para agregar una tarea:
+           1. Abre assets/js/data.js
+           2. Agrega un objeto al array TAREAS
+           3. Coloca el HTML de Jupyter en tareas/{id}/index.html
+           4. Guarda — la tarjeta aparece automáticamente
+         ============================================= -->
     <section id="tareas" class="section">
       <div class="container">
         <div class="reveal">
@@ -1024,51 +182,17 @@
           <h2 class="section-title">Tareas</h2>
           <div class="section-bar bar-magenta"></div>
         </div>
-        <div class="row g-4">
-          <div class="col-12 reveal reveal-d1">
-            <div
-              style="
-                text-align: center;
-                padding: 3rem 2rem;
-                color: var(--text-muted);
-              "
-            >
-              <i
-                class="bi bi-journal-text"
-                style="
-                  font-size: 2.5rem;
-                  opacity: 0.3;
-                  display: block;
-                  margin-bottom: 1rem;
-                "
-              ></i>
-              <p style="font-size: 0.95rem; font-weight: 300">
-                Próximamente se agregarán las tareas entregadas.
-              </p>
-            </div>
-          </div>
-
-          <!-- AGREGAR TAREA: copia este bloque, cambia número, título, descripción, tags y href
-                <div class="col-md-6 reveal">
-                    <div class="card accent-magenta">
-                        <div class="card-num">T1</div>
-                        <h3>Título de la tarea</h3>
-                        <p>Descripción breve de la tarea.</p>
-                        <div class="tags">
-                            <span class="tag tag-magenta">Tag</span>
-                        </div>
-                        <a href="#tarea-01" class="card-action link-magenta">Ver detalle <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-                -->
-        </div>
+        <!-- render.js inyecta las tarjetas aquí -->
+        <div class="row g-4" id="tareas-grid"></div>
       </div>
     </section>
 
-    <!-- ============================================================
-         SECCIÓN: PROYECTO FINAL
-         Edita directamente el contenido de este bloque
-         ============================================================ -->
+    <!-- =============================================
+         PROYECTO FINAL
+         ─────────────────────────────────────────────
+         Edita este bloque directamente cuando tengas
+         el proyecto final listo.
+         ============================================= -->
     <section id="proyecto-final" class="section section-alt">
       <div class="container">
         <div class="reveal">
@@ -1076,161 +200,41 @@
           <h2 class="section-title">Proyecto Final</h2>
           <div class="section-bar bar-warm"></div>
         </div>
+
         <div class="reveal reveal-d1">
           <div class="proyecto-card">
             <div class="status-badge">
               <span class="dot"></span>
               En progreso
             </div>
-            <h3
-              style="
-                font-family: &quot;Syne&quot;, sans-serif;
-                font-size: 1.8rem;
-                font-weight: 800;
-                margin-bottom: 1rem;
-                letter-spacing: -0.5px;
-              "
-            >
-              Próximamente
-            </h3>
-            <p
-              style="
-                color: var(--text-secondary);
-                font-weight: 300;
-                max-width: 600px;
-                margin-bottom: 1.5rem;
-              "
-            >
+            <h3 class="proyecto-title">Próximamente</h3>
+            <p class="proyecto-desc">
               El proyecto final integrador se publicará aquí conforme avance la
               academia. Incluirá arquitectura cloud con AWS, manejo de datos y
               una API backend completa.
             </p>
-            <div class="tech-pills" style="margin-bottom: 0">
+            <div class="tech-pills mb-0">
               <span class="pill">AWS</span>
-              <span class="pill">API REST</span>
               <span class="pill">Base de datos</span>
-              <span class="pill">Serverless</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============================================================
-         DETALLES DE EJERCICIOS Y TAREAS
-         Cuando agregues un ejercicio o tarea, copia este template:
-
-         <section id="ej-01" class="section">
-             <div class="container">
-                 <div class="row">
-                     <div class="col-lg-9">
-                         <div class="reveal">
-                             <a href="#ejercicios" class="back-link" style="color:var(--cyan);">
-                                 <i class="bi bi-arrow-left"></i> Volver a ejercicios
-                             </a>
-                             <p class="section-label">Ejercicio 01</p>
-                             <h2 class="section-title">Título del ejercicio</h2>
-                             <div class="tech-pills" style="margin-top:1rem;">
-                                 <span class="pill">Tag</span>
-                             </div>
-                         </div>
-                         <div class="detail-content reveal reveal-d1">
-                             <h3>Descripción</h3>
-                             <p>Descripción del ejercicio.</p>
-                             <h3>Código</h3>
-                             <pre><code class="language-sql">TU CÓDIGO AQUÍ</code></pre>
-                             <h3>Resultado</h3>
-                             <p>Capturas o salida del ejercicio.</p>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </section>
-
-         Para tareas usa id="tarea-01", href="#tareas", color magenta
-         ============================================================ -->
-
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
     <footer>
       <div class="container">
-        <p>
-          Adrian Ortega — Backend Academy
-          <span class="footer-brand">Xideral</span> · 2026
-        </p>
+        <p>Adrian Ortega — Backend Academy <span class="footer-brand">Xideral</span> · 2026</p>
       </div>
     </footer>
 
+    <!-- Scripts — orden importante: Bootstrap → data → render → main -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script>
-      hljs.highlightAll();
-
-      document.addEventListener("DOMContentLoaded", () => {
-        const navbar = document.querySelector(".navbar");
-        const reveals = document.querySelectorAll(".reveal");
-        const navLinks = document.querySelectorAll(".nav-link");
-
-        window.addEventListener(
-          "scroll",
-          () => {
-            navbar.classList.toggle("scrolled", window.scrollY > 50);
-          },
-          { passive: true },
-        );
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.12, rootMargin: "0px 0px -30px 0px" },
-        );
-
-        reveals.forEach((el) => observer.observe(el));
-
-        const mainSections = [
-          "inicio",
-          "sobre-mi",
-          "ejercicios",
-          "tareas",
-          "proyecto-final",
-        ];
-
-        const sectionObs = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const id = entry.target.getAttribute("id");
-                if (mainSections.includes(id)) {
-                  navLinks.forEach((link) => {
-                    link.classList.toggle(
-                      "active",
-                      link.getAttribute("href") === "#" + id,
-                    );
-                  });
-                }
-              }
-            });
-          },
-          { threshold: 0.3 },
-        );
-
-        document
-          .querySelectorAll("section[id]")
-          .forEach((s) => sectionObs.observe(s));
-
-        const collapse = document.querySelector(".navbar-collapse");
-        navLinks.forEach((link) => {
-          link.addEventListener("click", () => {
-            if (collapse.classList.contains("show")) {
-              new bootstrap.Collapse(collapse).hide();
-            }
-          });
-        });
-      });
-    </script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/render.js"></script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>

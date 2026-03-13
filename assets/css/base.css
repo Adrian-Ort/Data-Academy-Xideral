@@ -1,0 +1,112 @@
+/* ================================================
+   base.css — Reset, cuerpo, animaciones globales
+   ================================================
+   Estilos que aplican a toda la página:
+   reset básico, body, scrollbar, fondo animado,
+   animaciones reutilizables y reveal on scroll.
+   ================================================ */
+
+/* ── Reset ───────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px; /* compensa la navbar fija */
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── Selección de texto ──────────────────────── */
+::selection {
+  background: var(--electric);
+  color: #fff;
+}
+
+/* ── Scrollbar personalizado ─────────────────── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--electric); border-radius: 3px; }
+
+/* ── Fondo animado tipo mesh ─────────────────── */
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(123, 47, 247, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 90% 80%, rgba(0, 245, 212, 0.06)  0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(247, 37, 133, 0.04) 0%, transparent 60%);
+  animation: meshMove 30s ease-in-out infinite alternate;
+}
+
+@keyframes meshMove {
+  0%   { transform: scale(1)    rotate(0deg);  }
+  50%  { transform: scale(1.05) rotate(1deg);  }
+  100% { transform: scale(1)    rotate(-1deg); }
+}
+
+/* ── Textura de grano ────────────────────────── */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ── Animación de entrada del hero ───────────── */
+@keyframes fadeSlide {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Reveal on scroll ────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition:
+    opacity   0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delays escalonados para filas de tarjetas */
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+
+/* ── Utilidades de texto ─────────────────────── */
+/* Texto suave sin inline style */
+.text-soft {
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+/* ── Bloques de código ───────────────────────── */
+pre {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+}

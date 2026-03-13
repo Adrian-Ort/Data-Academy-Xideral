@@ -1,0 +1,328 @@
+/* ================================================
+   components.css — Componentes reutilizables
+   ================================================
+   Botones, tarjetas, pills, tags, badges y
+   estados vacíos. Todo lo que se repite en la UI.
+   ================================================ */
+
+/* ── HERO BADGE (indicador "en vivo") ────────── */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1.2rem;
+  background: rgba(123, 47, 247, 0.12);
+  border: 1px solid rgba(123, 47, 247, 0.25);
+  border-radius: 50px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--cyan);
+  margin-bottom: 2rem;
+}
+
+/* Punto pulsante */
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 12px var(--cyan); }
+  50%       { opacity: 0.4; box-shadow: 0 0 4px  var(--cyan); }
+}
+
+
+/* ── PILLS DE TECNOLOGÍA ─────────────────────── */
+.tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.pill {
+  padding: 0.35rem 0.9rem;
+  border-radius: 8px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.73rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  background: rgba(15, 15, 36, 0.6);
+  transition: var(--transition);
+  cursor: default;
+}
+
+.pill:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-3px);
+}
+
+
+/* ── BOTONES ─────────────────────────────────── */
+
+/* Botón principal con gradiente y efecto shimmer */
+.btn-glow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  background: var(--gradient-main);
+  color: #fff;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: 0.7s ease;
+}
+
+.btn-glow:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 40px rgba(123, 47, 247, 0.4), 0 0 20px rgba(0, 245, 212, 0.2);
+  color: #fff;
+}
+
+.btn-glow:hover::before { transform: translateX(100%); }
+
+/* Botón secundario con borde */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: "Syne", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-ghost:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-3px);
+}
+
+
+/* ── TARJETAS ────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: var(--transition);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Línea de acento superior (animada al hover) */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  transform: scaleX(0);
+  transition: var(--transition);
+  transform-origin: left;
+}
+
+.card.accent-cyan::before    { background: var(--gradient-cool); }
+.card.accent-magenta::before { background: var(--gradient-fire); }
+
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-8px);
+}
+
+.card:hover::before             { transform: scaleX(1); }
+.card.accent-cyan:hover    { box-shadow: var(--glow-cyan);    }
+.card.accent-magenta:hover { box-shadow: var(--glow-magenta); }
+
+/* Número decorativo */
+.card-num {
+  font-family: "Syne", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 1rem;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.35;
+}
+
+.card h3 {
+  font-family: "Syne", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.3px;
+  color: #fff;
+}
+
+.card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* Snippet de código dentro de la tarjeta */
+.card-code {
+  background: rgba(5, 5, 16, 0.7) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 0.85rem 1rem !important;
+  margin: 1rem 0 0 !important;
+  font-size: 0.75rem !important;
+  max-height: 90px;
+  overflow: hidden;
+  /* Degradado para indicar que hay más contenido */
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.card-code code {
+  font-size: 0.75rem;
+  white-space: pre;
+}
+
+/* Imagen de preview opcional */
+.card-preview-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--border);
+  opacity: 0.85;
+  transition: var(--transition);
+}
+
+.card:hover .card-preview-img {
+  opacity: 1;
+}
+
+/* Empuja el link al fondo de la tarjeta */
+.card-spacer {
+  flex: 1;
+}
+
+
+/* ── TAGS ────────────────────────────────────── */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
+}
+
+.tag {
+  padding: 0.2rem 0.65rem;
+  border-radius: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 500;
+}
+
+.tag-cyan     { background: rgba(0, 245, 212, 0.1);  color: var(--cyan);    }
+.tag-magenta  { background: rgba(247, 37, 133, 0.1); color: var(--magenta); }
+.tag-electric { background: rgba(123, 47, 247, 0.12); color: #a78bfa;       }
+.tag-blue     { background: rgba(67, 97, 238, 0.12);  color: var(--blue);   }
+.tag-yellow   { background: rgba(254, 228, 64, 0.1);  color: var(--yellow); }
+
+
+/* ── CARD ACTION LINK ────────────────────────── */
+.card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.card-action.link-cyan         { color: var(--cyan);    }
+.card-action.link-cyan:hover   { color: #fff; gap: 0.8rem; }
+.card-action.link-magenta      { color: var(--magenta); }
+.card-action.link-magenta:hover{ color: #fff; gap: 0.8rem; }
+
+
+/* ── STATUS BADGE (proyecto final) ──────────── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border-radius: 50px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.73rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  background: rgba(0, 245, 212, 0.1);
+  border: 1px solid rgba(0, 245, 212, 0.2);
+  color: var(--cyan);
+}
+
+.status-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+
+/* ── EMPTY STATE ─────────────────────────────── */
+/* Se muestra cuando no hay ejercicios o tareas aún */
+.empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--text-muted);
+}
+
+.empty-state i {
+  font-size: 2.5rem;
+  opacity: 0.3;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.empty-state p {
+  font-size: 0.95rem;
+  font-weight: 300;
+}
