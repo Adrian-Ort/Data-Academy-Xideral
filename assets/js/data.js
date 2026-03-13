@@ -31,6 +31,13 @@ const EJERCICIOS = [
     descripcion: "Manejo de listas en Python: suma de ventas con sum(), cálculo de promedio y filtrado de datos con condicionales.",
     codigo: "ventas = [12, 8, 15, 20, 50]\ntotal = sum(ventas)\nprint('Total de ventas:', total)",
     imagen: ""
+  },
+  {
+    id: "02",
+    titulo: "Equipo 5 — Ranking Top 3 canciones por género",
+    descripcion: "Ejercicio en equipo: obtener las 3 canciones más populares dentro de cada género musical usando rank() y window functions con Pandas.",
+    codigo: "df_genres = df[['track_genre', 'track_name', 'artists', 'popularity']]\ndf_genres['rank'] = df_genres.groupby('track_genre')['popularity'].rank(ascending=False)",
+    imagen: ""
   }
 ];
 
