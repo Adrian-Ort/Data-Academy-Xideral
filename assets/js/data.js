@@ -68,5 +68,13 @@ const TAREAS = [
     codigo: "hero.moveRight()\nenemy = hero.findNearestEnemy()\nhero.attack(enemy)",
     imagen: "assets/img/Tarea-codecombat.png",
     link: "assets/img/Tarea-codecombat.png"
+  },
+  {
+    id: "04",
+    titulo: "App de Limpieza de Datos con Streamlit",
+    descripcion: "Crear una app en Streamlit con Python que permita subir un archivo CSV, eliminar los valores nulos y las filas duplicadas, y mostrar una visualización del antes y después de la limpieza de datos.",
+    codigo: "import streamlit as st\nimport pandas as pd\n\ndf = pd.read_csv(uploaded_file)\ndf_clean = df.dropna().drop_duplicates()",
+    imagen: "assets/img/Tarea-APP-duplicados-nulos.png",
+    link: "assets/img/Tarea-APP-duplicados-nulos.png"
   }
 ];
