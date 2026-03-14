@@ -264,6 +264,8 @@
 
 
 /* ── CARD ACTION LINK ────────────────────────── */
+button.card-action { background: none; border: none; padding: 0; cursor: pointer; }
+
 .card-action {
   display: inline-flex;
   align-items: center;
