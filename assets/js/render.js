@@ -75,7 +75,7 @@ function renderTareaCard(tarea, index) {
   const accionHtml = archivoUrl
     ? esImagen
       ? `<button data-lightbox="${archivoUrl}" class="card-action link-magenta">
-          Ver imagen <i class="bi bi-image"></i>
+          Abrir tarea <i class="bi bi-box-arrow-up-right"></i>
         </button>`
       : `<a href="${archivoUrl}" target="_blank" class="card-action link-magenta">
           Abrir tarea <i class="bi bi-box-arrow-up-right"></i>
