@@ -42,6 +42,33 @@ const EJERCICIOS = [
 ];
 
 /* ─────────────────────────────────────────────
+   CERTIFICACIONES AWS
+   ───────────────────────────────────────────── */
+const CERTIFICACIONES = [
+  {
+    id: "01",
+    titulo: "AWS Cloud Practitioner Essentials",
+    descripcion: "Cubre los conceptos esenciales de la nube: infraestructura global de AWS, servicios principales como EC2, S3 y RDS, modelo de seguridad compartida, arquitectura bien diseñada y estructura de precios.",
+    imagen: "assets/img/AWS-Cloud-Practitioner.png",
+    fecha: "15 de marzo, 2026"
+  },
+  {
+    id: "02",
+    titulo: "Getting into the Serverless Mindset",
+    descripcion: "Introducción al paradigma serverless: beneficios, casos de uso y diseño de aplicaciones sin servidor con AWS Lambda y API Gateway para construir arquitecturas event-driven escalables.",
+    imagen: "assets/img/AWS-Serverless-Mindset.png",
+    fecha: "15 de marzo, 2026"
+  },
+  {
+    id: "03",
+    titulo: "Data Engineering on AWS - Foundations",
+    descripcion: "Fundamentos de ingeniería de datos en la nube: pipelines de datos, ingesta, transformación y almacenamiento con servicios AWS como S3, Glue, Athena y Amazon Redshift.",
+    imagen: "assets/img/AWS-Data-Engineering.png",
+    fecha: "15 de marzo, 2026"
+  }
+];
+
+/* ─────────────────────────────────────────────
    TAREAS ENTREGABLES
    El enlace al archivo HTML se genera
    automáticamente como: tareas/{id}/index.html

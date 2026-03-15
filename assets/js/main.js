@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 0);
 
   /* ── Nav link activo según sección visible ── */
-  const mainSections = ["inicio", "sobre-mi", "ejercicios", "tareas", "proyecto-final"];
+  const mainSections = ["inicio", "sobre-mi", "ejercicios", "tareas", "certificaciones", "proyecto-final"];
 
   const sectionObserver = new IntersectionObserver(
     (entries) => {

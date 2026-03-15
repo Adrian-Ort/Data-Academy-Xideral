@@ -155,8 +155,9 @@
   transform-origin: left;
 }
 
-.card.accent-cyan::before    { background: var(--gradient-cool); }
-.card.accent-magenta::before { background: var(--gradient-fire); }
+.card.accent-cyan::before     { background: var(--gradient-cool); }
+.card.accent-magenta::before  { background: var(--gradient-fire); }
+.card.accent-electric::before { background: var(--gradient-main); }
 
 .card:hover {
   background: var(--bg-card-hover);
@@ -164,9 +165,10 @@
   transform: translateY(-8px);
 }
 
-.card:hover::before             { transform: scaleX(1); }
-.card.accent-cyan:hover    { box-shadow: var(--glow-cyan);    }
-.card.accent-magenta:hover { box-shadow: var(--glow-magenta); }
+.card:hover::before              { transform: scaleX(1); }
+.card.accent-cyan:hover     { box-shadow: var(--glow-cyan);     }
+.card.accent-magenta:hover  { box-shadow: var(--glow-magenta);  }
+.card.accent-electric:hover { box-shadow: var(--glow-electric); border-color: rgba(123, 47, 247, 0.4); }
 
 /* Número decorativo */
 .card-num {
@@ -234,6 +236,48 @@
   opacity: 1;
 }
 
+/* Botón-contenedor de imagen de certificado */
+.cert-img-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: zoom-in;
+  display: block;
+  width: 100%;
+}
+
+/* Imagen de certificado (más alta, sin recorte) */
+.card-cert-img {
+  width: 100%;
+  height: 175px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--border);
+  padding: 0.5rem;
+  opacity: 0.88;
+  transition: var(--transition);
+}
+
+.card:hover .card-cert-img {
+  opacity: 1;
+  border-color: rgba(123, 47, 247, 0.4);
+}
+
+/* Fecha de obtención del certificado */
+.cert-fecha {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #a78bfa;
+  opacity: 0.75;
+}
+
 /* Empuja el link al fondo de la tarjeta */
 .card-spacer {
   flex: 1;
@@ -277,10 +321,12 @@ button.card-action { background: none; border: none; padding: 0; cursor: pointer
   transition: var(--transition);
 }
 
-.card-action.link-cyan         { color: var(--cyan);    }
-.card-action.link-cyan:hover   { color: #fff; gap: 0.8rem; }
-.card-action.link-magenta      { color: var(--magenta); }
-.card-action.link-magenta:hover{ color: #fff; gap: 0.8rem; }
+.card-action.link-cyan          { color: var(--cyan);    }
+.card-action.link-cyan:hover    { color: #fff; gap: 0.8rem; }
+.card-action.link-magenta       { color: var(--magenta); }
+.card-action.link-magenta:hover { color: #fff; gap: 0.8rem; }
+.card-action.link-electric      { color: #a78bfa; }
+.card-action.link-electric:hover{ color: #fff; gap: 0.8rem; }
 
 
 /* ── STATUS BADGE (proyecto final) ──────────── */

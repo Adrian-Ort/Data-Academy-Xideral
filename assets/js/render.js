@@ -97,6 +97,33 @@ function renderTareaCard(tarea, index) {
 }
 
 /**
+ * Genera la tarjeta HTML de una certificación.
+ *
+ * @param {Object} cert  - Objeto del array CERTIFICACIONES
+ * @param {number} index - Índice para el delay de animación
+ */
+function renderCertificacionCard(cert, index) {
+  const delayClass = `reveal-d${(index % 3) + 1}`;
+
+  return `
+    <div class="col-md-6 col-lg-4 reveal ${delayClass}">
+      <div class="card accent-electric">
+        <button data-lightbox="${cert.imagen}" class="cert-img-btn">
+          <img src="${cert.imagen}" alt="${cert.titulo}" class="card-cert-img">
+        </button>
+        <div class="card-num">C${String(cert.id).padStart(2, "0")}</div>
+        <h3>${cert.titulo}</h3>
+        <p>${cert.descripcion}</p>
+        <div class="cert-fecha"><i class="bi bi-calendar3"></i> ${cert.fecha}</div>
+        <div class="card-spacer"></div>
+        <button data-lightbox="${cert.imagen}" class="card-action link-electric">
+          Ver certificado <i class="bi bi-box-arrow-up-right"></i>
+        </button>
+      </div>
+    </div>`;
+}
+
+/**
  * Muestra un mensaje cuando la sección está vacía.
  */
 function renderEmptyState(iconClass, mensaje) {
@@ -116,6 +143,7 @@ function renderEmptyState(iconClass, mensaje) {
 document.addEventListener("DOMContentLoaded", () => {
   const ejGrid     = document.getElementById("ejercicios-grid");
   const tareasGrid = document.getElementById("tareas-grid");
+  const certsGrid  = document.getElementById("certificaciones-grid");
 
   // Renderizar ejercicios
   if (ejGrid) {
@@ -129,5 +157,12 @@ document.addEventListener("DOMContentLoaded", () => {
     tareasGrid.innerHTML = TAREAS.length
       ? TAREAS.map((tarea, i) => renderTareaCard(tarea, i)).join("")
       : renderEmptyState("bi-journal-text", "Próximamente se agregarán las tareas entregadas.");
+  }
+
+  // Renderizar certificaciones
+  if (certsGrid) {
+    certsGrid.innerHTML = CERTIFICACIONES.length
+      ? CERTIFICACIONES.map((cert, i) => renderCertificacionCard(cert, i)).join("")
+      : renderEmptyState("bi-award", "Próximamente se agregarán las certificaciones obtenidas.");
   }
 });
