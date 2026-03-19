@@ -30,13 +30,22 @@ function escapeHtml(str) {
  * @param {number} index - Índice para el delay de animación
  */
 function renderEjercicioCard(ej, index) {
-  const archivoUrl  = `ejercicios/${ej.id}/index.html`;
+  const archivoUrl  = ej.link !== undefined ? ej.link : `ejercicios/${ej.id}/index.html`;
   const delayClass  = `reveal-d${(index % 3) + 1}`;
 
   // Imagen de preview (solo si el campo no está vacío)
   const imagenHtml = ej.imagen
     ? `<img src="${ej.imagen}" alt="${ej.titulo}" class="card-preview-img">`
     : "";
+
+  const esImagen = archivoUrl && /\.(png|jpg|jpeg|gif|webp)$/i.test(archivoUrl);
+  const accionHtml = esImagen
+    ? `<button data-lightbox="${archivoUrl}" class="card-action link-cyan">
+          Abrir ejercicio <i class="bi bi-box-arrow-up-right"></i>
+        </button>`
+    : `<a href="${archivoUrl}" target="_blank" class="card-action link-cyan">
+          Abrir ejercicio <i class="bi bi-box-arrow-up-right"></i>
+        </a>`;
 
   return `
     <div class="col-md-6 col-lg-4 reveal ${delayClass}">
@@ -47,9 +56,7 @@ function renderEjercicioCard(ej, index) {
         <p>${ej.descripcion}</p>
         <pre class="card-code"><code>${escapeHtml(ej.codigo)}</code></pre>
         <div class="card-spacer"></div>
-        <a href="${archivoUrl}" target="_blank" class="card-action link-cyan">
-          Abrir ejercicio <i class="bi bi-box-arrow-up-right"></i>
-        </a>
+        ${accionHtml}
       </div>
     </div>`;
 }

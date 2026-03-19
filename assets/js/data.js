@@ -38,6 +38,28 @@ const EJERCICIOS = [
     descripcion: "Ejercicio en equipo: obtener las 3 canciones más populares dentro de cada género musical usando rank() y window functions con Pandas.",
     codigo: "df_genres = df[['track_genre', 'track_name', 'artists', 'popularity']]\ndf_genres['rank'] = df_genres.groupby('track_genre')['popularity'].rank(ascending=False)",
     imagen: ""
+  },
+  {
+    id: "03",
+    titulo: "Función Lambda en AWS",
+    descripcion: "Ejercicio de AWS Lambda: creación y ejecución de una función serverless en Python que procesa eventos y retorna respuestas HTTP desde la consola de AWS.",
+    codigo: "def lambda_handler(event, context):\n    return {\n        'statusCode': 200,\n        'body': 'Hello from Lambda!'\n    }",
+    imagen: "assets/img/lambda.png",
+    link: "assets/img/lambda.png"
+  },
+  {
+    id: "04",
+    titulo: "Análisis del Dataset Netflix con PySpark",
+    descripcion: "Exploración del dataset netflix_titles.csv usando PySpark: carga de datos, inspección del esquema, filtrado por tipo de contenido y análisis con SparkSession.",
+    codigo: "from pyspark.sql import SparkSession\nspark = SparkSession.builder.appName(\"NetflixSpark\").getOrCreate()\ndf = spark.read.csv(\"netflix_titles.csv\", header=True)\ndf.filter(col(\"type\") == \"Movie\").show()",
+    imagen: ""
+  },
+  {
+    id: "05",
+    titulo: "Consultas SQL sobre Base de Datos Universitaria",
+    descripcion: "Consultas SQL con SQLite: número de cursos por departamento, GPA promedio de estudiantes, inscripciones por profesor, estudiantes sin inscripciones y departamento con mayor promedio de inscripciones.",
+    codigo: "SELECT d.name, COUNT(c.course_id) AS num_courses\nFROM departments d\nJOIN courses c ON d.dept_id = c.dept_id\nGROUP BY d.name\nORDER BY num_courses DESC",
+    imagen: ""
   }
 ];
 
