@@ -287,6 +287,7 @@ nav.navbar.scrolled {
   border-radius: var(--radius-sm);
   overflow: hidden;
   border: 1px solid var(--border);
+  max-width: 560px;
 }
 
 .proyecto-img {
@@ -301,6 +302,7 @@ nav.navbar.scrolled {
 
 .proyecto-diagram {
   width: 100%;
+  max-width: 560px;
   display: block;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
