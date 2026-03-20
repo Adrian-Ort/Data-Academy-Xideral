@@ -217,18 +217,79 @@
           <div class="proyecto-card">
             <div class="status-badge">
               <span class="dot"></span>
-              En progreso
+              Completado — Marzo 2026
             </div>
-            <h3 class="proyecto-title">Próximamente</h3>
+
+            <h3 class="proyecto-title">NYC Yellow Taxi — Data Pipeline</h3>
             <p class="proyecto-desc">
-              El proyecto final integrador se publicará aquí conforme avance la
-              academia. Incluirá arquitectura cloud con AWS, manejo de datos y
-              una API backend completa.
+              Pipeline de datos end-to-end que descarga, procesa y visualiza los
+              registros de viajes de taxi amarillo de Nueva York (NYC TLC),
+              desplegado completamente en AWS. El sistema opera de forma
+              totalmente automatizada: desde la ingesta de archivos parquet
+              hasta un dashboard interactivo con Streamlit, sin intervención
+              manual.
             </p>
-            <div class="tech-pills mb-0">
-              <span class="pill">AWS</span>
-              <span class="pill">Base de datos</span>
+
+            <!-- Imagen del proyecto -->
+            <div class="proyecto-img-wrap reveal reveal-d2">
+              <img
+                src="assets/img/proyecto-final.png"
+                alt="Dashboard NYC Yellow Taxi"
+                class="proyecto-img"
+                loading="lazy"
+              />
             </div>
+
+            <!-- Diagrama de arquitectura -->
+            <div class="proyecto-diagram-wrap reveal reveal-d3">
+              <p class="section-label mb-2">// arquitectura</p>
+              <img
+                src="assets/img/diagrama.svg"
+                alt="Diagrama de arquitectura AWS"
+                class="proyecto-diagram"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- Detalles del pipeline -->
+            <div class="proyecto-details reveal reveal-d2">
+              <div class="proyecto-detail-item">
+                <span class="detail-label">Fuente de datos</span>
+                <span class="detail-value">NYC TLC — 59 meses procesados (~3M viajes/mes)</span>
+              </div>
+              <div class="proyecto-detail-item">
+                <span class="detail-label">Procesamiento</span>
+                <span class="detail-value">Apache PySpark 3.5 · limpieza + 5 tablas analíticas</span>
+              </div>
+              <div class="proyecto-detail-item">
+                <span class="detail-label">Automatización</span>
+                <span class="detail-value">Lambda (trigger S3 PUT) · watcher.py en EC2 (crontab 1 min)</span>
+              </div>
+              <div class="proyecto-detail-item">
+                <span class="detail-label">CI/CD</span>
+                <span class="detail-value">GitHub Actions runner en EC2 · docker-compose en push a main</span>
+              </div>
+            </div>
+
+            <div class="tech-pills mt-3 mb-3">
+              <span class="pill">AWS S3</span>
+              <span class="pill">AWS Lambda</span>
+              <span class="pill">EC2</span>
+              <span class="pill">PySpark</span>
+              <span class="pill">Streamlit</span>
+              <span class="pill">Docker</span>
+              <span class="pill">GitHub Actions</span>
+              <span class="pill">Python 3.12</span>
+            </div>
+
+            <a
+              href="http://54.153.93.204:8501"
+              target="_blank"
+              rel="noopener"
+              class="card-action link-electric"
+            >
+              Ver dashboard en vivo <i class="bi bi-box-arrow-up-right"></i>
+            </a>
           </div>
         </div>
       </div>
